@@ -22,7 +22,6 @@ class SBNNTrain(object):
             
             Parameters:
             -----------
-            
             weights_dir: string, directory path to save the
                                 trained model weights.
             logs_dir: string, directory path to save the
@@ -33,7 +32,6 @@ class SBNNTrain(object):
             
             Returns
             -------
-            
             Weights of the train model.
         
         """
@@ -87,11 +85,9 @@ class SBNNTrain(object):
         def loadModel(self):
             
             """ Load Spatially informed Bayesian Neural Network model.
-        
             
                 Returns
                 -------
-            
                 Model.
         
             """
@@ -105,10 +101,8 @@ class SBNNTrain(object):
             
             """ Set Learning rate scheduler for training process.
         
-            
                 Returns
                 -------
-            
                 learning rate.
         
             """
@@ -124,10 +118,8 @@ class SBNNTrain(object):
             """ Set Optimizer for training process.
                 Default is Adam
         
-            
                 Returns
                 -------
-            
                 Optimizer.
         
     
@@ -144,7 +136,6 @@ class SBNNTrain(object):
             
             Returns
             -------
-            
             Callbacks.
             
             """
@@ -171,7 +162,6 @@ class SBNNTrain(object):
             
             Returns
             -------
-            
             Metrics.
             
             """
@@ -195,17 +185,14 @@ class SBNNTrain(object):
         def trainModel(self, data):
             
             """ Train the Spatially Informed Bayesian Neural Network model.
-        
             
             Parameters:
             -----------
-            
             data: a SBNNDataset instance for training, validation and test dataset.
             
             
             Returns
             -------
-            
             A tranined model.
         
             """
@@ -258,17 +245,13 @@ class SBNNTrain(object):
             
             """ Create a new directory.
         
-            
                 Parameters:
                 -----------
-            
                 dir_path: string, path of new directory.
                 rm: boolean, remove existing directory or not.
             
-            
                 Returns
                 -------
-            
                 new folder.
         
             """
@@ -282,4 +265,3 @@ class SBNNTrain(object):
             else:
                 os.makedirs(dir_path)
             return
-        
