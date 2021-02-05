@@ -1,6 +1,13 @@
+# Neurodegenerative Diseases Classification
+# Train 3D Spatially Informed Bayesian CNN.
+# Author: David Payares.
+# Copyleft: MIT Licience.
+
+
 import os
 import shutil
 
+from keras import backend as K
 from SBNN_models import SBNNModels
 from tensorflow.keras.optimizers import Adam, schedules
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger
@@ -77,7 +84,7 @@ class SBNNTrain(object):
         return
         
         
-        def callModelself(self):
+        def loadModel(self):
             
             """ Load Spatially informed Bayesian Neural Network model.
         
@@ -112,7 +119,7 @@ class SBNNTrain(object):
                                                      staircase=True)
             return lr_schedule
             
-        def setOptimizer(self):
+        def loadOptimizer(self):
             
             """ Set Optimizer for training process.
                 Default is Adam
@@ -131,13 +138,15 @@ class SBNNTrain(object):
             
             return
         
-        def setCallBacks(self):
+        def loadCallBacks(self):
         
             """ Set callback functions while training model.
-                -1- Save learning curves while training.
-                -2- Set learning rate scheduler.
-                -3- Add support for TensorBoard.
-                -4- Save best model while training. (optional)
+            
+            Returns
+            -------
+            
+            Callbacks.
+            
             """
             
             # Save learning curves
@@ -155,7 +164,95 @@ class SBNNTrain(object):
             
             return
         
+        def modelEvaluation(self):
+            
+            """ Prints out metrics of acurracy and loss for the 
+                training, validation and test dataset.
+            
+            Returns
+            -------
+            
+            Metrics.
+            
+            """
+            
+            # Compute metrics
+            def computeMetrics(data_set, name_dataset):
+                score = self.model.evaluate(data_set)
+                print(name_dataset + " Dataset: Loss: {0:.4f}, Accuracy: {1:.4f}".format(
+                  score[0], score[1]))
+                
+                return
+            
+            datasets_names = ["Training", "Validation", "Test"]
+            datasets_data = [self.data.training, self.data.val , self.data.test]
+            
+            for n,d in zip(datasets_names, datasets_data):
+                computeMetrics(n,d)
+                
+            return
+                        
+        def trainModel(self, data):
+            
+            """ Train the Spatially Informed Bayesian Neural Network model.
         
+            
+            Parameters:
+            -----------
+            
+            data: a SBNNDataset instance for training, validation and test dataset.
+            
+            
+            Returns
+            -------
+            
+            A tranined model.
+        
+            """
+            
+            print("\nTraining the model.\n")
+            
+            self.data = data
+            
+            # Configurate the model
+            self.loadModel()
+            self.loadOptimizer()
+            
+            # loss likelihood function
+            def negative_log_likelihood(y_true, y_pred):
+                return -y_pred.log_prob(y_true)
+            
+            # Compile model
+            self.model.compile(loss= negative_log_likelihood, 
+                               optimizer = self.opt,
+                               metrics = ["accuracy"])
+            
+            # Display model summary
+            self.model.summary()
+            
+            # Load Callbacks
+            self.loadCallBacks()
+            
+            ### Train the model
+            self.model.fit(self.data.training, 
+                           validation_data = self.data.val, 
+                           epochs=  self.epochs_num, 
+                           shuffle = True , 
+                           verbose = 2 , 
+                           callbacks = self.callbacks)
+            
+            # Save last epoch model
+            self.model.save(self.last_weights_path)
+            
+            # print metrics
+            self.modelEvaluation()
+            
+            #Clear TF session
+            K.clear_session()
+            
+            return
+            
+            
         @staticmethod
         def createDir(path, rm=True):
             
@@ -184,4 +281,5 @@ class SBNNTrain(object):
                     os.makedirs(dir_path)
             else:
                 os.makedirs(dir_path)
-            return 
+            return
+        

@@ -1,5 +1,5 @@
 # Neurodegenerative Diseases Classification
-# Construct 3D Spatially Informed Bayesian CNN.
+# Build 3D Spatially Informed Bayesian CNN.
 # Author: David Payares.
 # Copyleft: MIT Licience.
 
@@ -18,7 +18,7 @@ class SBNNModels(object):
                  input_shape = (91,109,91,1),
                  pooling = "max",
                  drop_rate = 0.5,
-                 training_data_length = 10,
+                 training_data_length = 231,
                  classes = 5):
         
         """Spatially Informed Bayesian Neural Network.
