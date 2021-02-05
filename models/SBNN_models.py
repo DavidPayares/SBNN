@@ -279,7 +279,10 @@ class SBNNModels(object):
         
         ## Output Model
         return model
-
+    
+    
+    
+#### Get the SBNN model
 if __name__ == "__main__":
     
     # A test to print model's architecture.
@@ -299,16 +302,4 @@ if __name__ == "__main__":
                   metrics=["acc"]
                   )
     
-    model.summary()
-
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    model.summary()        
