@@ -273,8 +273,9 @@ class SBNNModels(object):
             outputs = self.dense3D(concat, units = tfp.layers.OneHotCategorical.params_size(self.classes), activation = 'softmax')
             outputs = tfp.layers.OneHotCategorical(self.classes)(outputs)
         else:
-            outputs = self.dense3D(concat, units = 5, activation = 'softmax')
-            
+            outputs = self.dense3D(concat, units = self.classes, activation = 'softmax')
+         
+        # Model definition
         model = Model(inputs = [input_int, input_si], outputs = outputs)
         
         ## Output Model
@@ -287,19 +288,20 @@ if __name__ == "__main__":
     
     # A test to print model's architecture.
     model = SBNNModels().model
-
+    
+    # learning rate
     initial_learning_rate = 0.0001
     lr_schedule = schedules.ExponentialDecay(initial_learning_rate, 
                                                               decay_steps=100000, 
                                                               decay_rate=0.96, 
                                                               staircase=True)
-    
+    # Checkpoints
     checkpoint_cb = ModelCheckpoint("Spatially-informed-Bayesian-Neural-Network.h5", 
                                                     save_best_only=True)
-
+    # Compilation
     model.compile(loss="categorical_crossentropy",
                   optimizer = Adam(learning_rate = lr_schedule),
                   metrics=["acc"]
                   )
-    
+    # SBNN architecture
     model.summary()        
