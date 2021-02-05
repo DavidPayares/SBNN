@@ -1,7 +1,7 @@
 # Neurodegenerative Diseases Classification
-# Construct 3D CNN.
-# Author: David Payares
-# Copyleft: MIT Licience
+# Construct 3D Spatially Informed Bayesian CNN.
+# Author: David Payares.
+# Copyleft: MIT Licience.
 
 from tensorflow.keras.layers import Input, MaxPooling3D, AveragePooling3D, Flatten, BatchNormalization, Dropout, Concatenate
 from tensorflow.keras.optimizers import Adam, schedules
