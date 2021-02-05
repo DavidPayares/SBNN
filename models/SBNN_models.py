@@ -138,7 +138,7 @@ class SBNNModels(object):
     
     def dense3D(self, inputs, units, activation = 'relu'):
         
-        """Build a 3D bayesian convolution layer .
+        """Build a 3D bayesian dense layer .
         
             
             Parameters:
@@ -240,9 +240,9 @@ class SBNNModels(object):
         
         # Fully Connected Layers
         conv_int = Flatten()(conv_int)
-        conv_int= self.dense3D(conv_int, units = 512)
+        conv_int = self.dense3D(conv_int, units = 512)
         conv_int = Dropout(self.drop_rate)(conv_int)
-        conv_int= self.dense3D(conv_int, units = 128)
+        conv_int = self.dense3D(conv_int, units = 128)
         conv_int = Dropout(self.drop_rate)(conv_int)
         
         #### Spatially Informed Branch (Segmented MRI scans)
@@ -258,9 +258,9 @@ class SBNNModels(object):
         
         # Fully Connected Layer
         conv_si = Flatten()(conv_si)
-        conv_si= self.dense3D(conv_si, units = 512)
+        conv_si = self.dense3D(conv_si, units = 512)
         conv_si = Dropout(self.drop_rate)(conv_si)
-        conv_si= self.dense3D(conv_si, units = 128)
+        conv_si = self.dense3D(conv_si, units = 128)
         conv_si = Dropout(self.drop_rate)(conv_si)
         
         # Fusion layer
