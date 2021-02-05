@@ -280,7 +280,6 @@ class SBNNModels(object):
         ## Output Model
         return model
 
-
 if __name__ == "__main__":
     
     # A test to print model's architecture.
@@ -296,11 +295,12 @@ if __name__ == "__main__":
                                                     save_best_only=True)
 
     model.compile(loss="categorical_crossentropy",
-                  optimizer = Adam(learning_rate=lr_schedule),
+                  optimizer = Adam(learning_rate = lr_schedule),
                   metrics=["acc"]
                   )
     
     model.summary()
+
     
         
         
