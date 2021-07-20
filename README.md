@@ -5,6 +5,7 @@
  ## Status
  
  This repository is under construction.
+ A simple and reproducible example can be found [here](https://nbviewer.jupyter.org/github/DavidPayares/SBNN/blob/main/Notebooks/SBNN.ipynb).
  
  ## References
  
