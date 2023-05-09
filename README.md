@@ -8,5 +8,5 @@
  
  ## References
  
- [Spatially informed Bayesian neural network for neurodegenerative diseases classification]([https://run.unl.pt/handle/10362/113889](https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9604))
+ [Spatially informed Bayesian neural network for neurodegenerative diseases classification]([https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9604](https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9604))
 
