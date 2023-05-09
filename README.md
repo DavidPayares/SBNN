@@ -3,11 +3,10 @@
  Spatially Informed Bayesian Neural Network for Classification of Neurodegenerative Diseases.
  
  ## Status
- 
- This repository is under construction.
+
  A simple and reproducible example can be found [here](https://nbviewer.jupyter.org/github/DavidPayares/SBNN/blob/main/Notebooks/SBNN.ipynb).
  
  ## References
  
- [Detection and Classification of Neurodegenerative Diseases: A Spatially Informed Bayesian Deep Learning Approach](https://run.unl.pt/handle/10362/113889)
+ [Spatially informed Bayesian neural network for neurodegenerative diseases classification]([https://run.unl.pt/handle/10362/113889](https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9604))
 
